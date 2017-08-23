@@ -489,6 +489,7 @@ class ExcelController extends Controller
             {
                 if($b->getcategorie() == $a)
                 {
+                    $phpExcelObject->getActiveSheet()->getRowDimension($j)->setRowHeight(-1);
                     if($test == 0)
                     {
                         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i,$b->getcategorie());
@@ -514,7 +515,6 @@ class ExcelController extends Controller
             {
                 $phpExcelObject->getActiveSheet()->mergeCells('A'.$i.':A'.($j-1));
             }
-            //merge cells
             $i=$j;
         }
         $phpExcelObject->setActiveSheetIndex(0)->setCellValue('A'.$i,'Total :')->getStyle('A'.$i)->getFont()->setBold(true);

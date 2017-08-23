@@ -37,15 +37,13 @@
       </div>
 
   </div>
-            <div class="form-group">
-                {{ form_label(form.DateFin,"Dernière date avant paiment") }}
-                {{ form_widget(form.DateFin,{'attr':{'class' : 'col-md-10 col-md-push-2'}}) }}
-            </div>
 
             <br>
-            <p id="tot" style="font-family: 'Times New Roman';font-size: 20px;">Total: </p>
+            <label class="control-label" style="font-size: 20px;">Total :</label>
+            <p id="tot" style="font-family: 'Times New Roman';font-size: 20px;display: inline"> </p>
 
-{# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
   <div style="padding-bottom: 2%; width: 300px;margin: 0 auto">
           <a href="#" id="add_blocFacture" class="btn btn-success">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>

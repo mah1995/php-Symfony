@@ -44,8 +44,8 @@ class EmailCommand extends ContainerAwareCommand
                     $message = \Swift_Message::newInstance()
                         //(new Swift_Message('Votre nom de domaine sera bientôt expiré'))
                         ->setSubject('Votre nom de domaine sera bientôt expiré')
-                        ->setFrom('hamouda1635@gmail.com')
-                        ->setTo($mail);
+                        ->setFrom('mahmoud.maalej@supcom.tn')
+                        ->setTo('hamouda1635@gmail.com');
                     $data['image_src'] = $message->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/hypermedia.png'));
                     $data['mailico'] = $message->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/mail.png'));
                     $data['phone']=$message->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/phone.png'));
@@ -73,32 +73,37 @@ class EmailCommand extends ContainerAwareCommand
 
         foreach ($factures as $f)
         {
-            if(strtotime($f->getDateFin()->format('d-M-Y'))-strtotime(date('d-M-Y'))<=172800 && strtotime($f->getDateFin()->format('d-M-Y'))-strtotime(date('d-M-Y'))>=0)
+            foreach ($f->getblocFacture() as $b)
             {
-                $output->writeln('sending !');
-                //send mail
-                require_once '/home/mah/Bureau/Stage/vendor/swiftmailer/swiftmailer/lib/swift_required.php';
+                if(strtotime($b->getDateFin()->format('d-M-Y'))-strtotime(date('d-M-Y'))<=172800 && strtotime($b->getDateFin()->format('d-M-Y'))-strtotime(date('d-M-Y'))>=0)
+                {
+                    $output->writeln('sending !');
+                    //send mail
+                    require_once '/home/mah/Bureau/Stage/vendor/swiftmailer/swiftmailer/lib/swift_required.php';
 
+                    $message1 = \Swift_Message::newInstance()
+                        //(new Swift_Message('Votre nom de domaine sera bientôt expiré'))
+                        ->setSubject('Rappel pour la facture de '.$f->getPeriode()->format('M Y'))
+                        ->setFrom('mahmoud.maalej@supcom.tn')
+                        ->setTo('hamouda1635@gmail.com');
+                    $data1['cat']=$b->getcategorie();
+                    $data1['image_src'] = $message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/hypermedia.png'));
+                    $data1['mailico'] = $message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/mail.png'));
+                    $data1['phone']=$message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/phone.png'));
+                    $data1['fax']=$message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/fax.png'));
+                    $exp = $b->getDateFin();
+                    $data1['exp']=$exp;
+                    $data1['note']=$b->getnote();
+                    $data1['per']=$f->getPeriode();
+                    $data1['mail']='hamouda1635@gmail.com';
+                    $message1->setBody($this->getContainer()->get('templating')->render('mailFacture.html.twig',$data1),'text/html')
+                    ;
 
-                $message1 = \Swift_Message::newInstance()
-                    //(new Swift_Message('Votre nom de domaine sera bientôt expiré'))
-                    ->setSubject('Rappel pour la facture de '.$f->getPeriode()->format('M Y'))
-                    ->setFrom('hamouda1635@gmail.com')
-                    ->setTo('hamouda1635@gmail.com');
-                $data1['image_src'] = $message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/hypermedia.png'));
-                $data1['mailico'] = $message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/mail.png'));
-                $data1['phone']=$message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/phone.png'));
-                $data1['fax']=$message1->embed(Swift_Image::fromPath('/home/mah/Bureau/Stage/web/img/fax.png'));
-                $exp = $f->getDateFin();
-                $data1['exp']=$exp;
-                $data1['per']=$f->getPeriode();
-                $data1['mail']='hamouda1635@gmail.com';
-                $message1->setBody($this->getContainer()->get('templating')->render('mailFacture.html.twig',$data1),'text/html')
-                ;
+                    $this->getContainer()->get('mailer')->send($message1);
 
-                $this->getContainer()->get('mailer')->send($message1);
-
+                }
             }
+
         }
     }
 

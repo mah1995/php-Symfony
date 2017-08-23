@@ -31,6 +31,11 @@ class blocFacture
     private $montant;
 
     /**
+     * @ORM\Column(name="DateFin", type="date", length=255)
+     */
+    private $DateFin;
+
+    /**
      * @ORM\Column(name="note", type="string", length=255,nullable = true)
      */
     private $note;
@@ -89,6 +94,22 @@ class blocFacture
     public function getnote()
     {
         return $this->note;
+    }
+
+    /**
+     * @param string $DateFin
+     */
+    public function setDateFin($DateFin)
+    {
+        $this->DateFin = $DateFin;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateFin()
+    {
+        return $this->DateFin;
     }
 
 }

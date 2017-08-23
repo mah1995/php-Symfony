@@ -134,37 +134,31 @@
         </div>
 
 
+<div class="row">
 
+    <div id="addnom">
 
-
-
-<div id="addnom">
-
-    {%- block _advert_NomDeDomaine_entry_widget -%}
-<div class="block">
-            <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
-                <h2 style="font-size: larger">mah</h2>
+        {%- block _advert_NomDeDomaine_entry_widget -%}
+            <div class="col-md-6">
+                <div class="block">
+                    <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
+                        <h2 style="font-size: larger">mah</h2>
+                    </div>
+                    {{ block('collection_widget') }}
+                </div>
             </div>
-            {{ block('collection_widget') }}
-        </div>
 
-    {%- endblock _advert_NomDeDomaine_entry_widget -%}
-</div>
-<script>
-    $('#addnom').remove();
-</script>
+        {%- endblock _advert_NomDeDomaine_entry_widget -%}
+    </div>
+    <script>
+        $('#addnom').remove();
+    </script>
 
     {{ form_widget(form.NomDeDomaine) }}
     {{ form_errors(form.NomDeDomaine) }}
 
-
-
-
-
-<div class="row">
-
 <div class="col-md-6">
-      <div class="block">
+      <div class="block" style="min-height: 417px">
 
         <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
 
@@ -174,6 +168,7 @@
   <div class="form-group">
  {#{ form_label(form.Cpanel, "Cpanel", {'label_attr': {'class': 'col-sm-2 control-label'}}) }#}
   <div>
+      <br>
   {{ form_widget(form.Cpanel,{'attr':{'class' : 'col-xs-11'}}) }}
   </div>
   </div>
@@ -182,7 +177,7 @@
 </div>
 
 <div class="col-md-6">
-      <div class="block">
+      <div class="block" style="min-height: 417px">
 
         <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
 
@@ -193,33 +188,14 @@
   <div class="form-group">
  {#{ form_label(form.FTP, "FTP", {'label_attr': {'class': 'col-sm-2 control-label'}}) }#}
   <div>
+      <br>
   {{ form_widget(form.FTP,{'attr':{'class' : 'col-xs-11'}}) }}
   </div>
   </div>
       </div>
 </div>
 
-    <div id="addemail">
 
-        {%- block _advert_Emails_entry_widget -%}
-            <div class="col-md-6">
-            <div class="block" style="min-height: 344px">
-                <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
-                    <h2 style="font-size: larger">mah</h2>
-
-                </div>
-                <br>
-                {{ block('form_widget') }}
-            </div>
-            </div>
-        {%- endblock _advert_Emails_entry_widget -%}
-    </div>
-    <script>
-        $('#addemail').remove();
-    </script>
-
-    {{ form_widget(form.Emails) }}
-    {{ form_errors(form.Emails) }}
 
 
 
@@ -227,11 +203,12 @@
 
         {%- block _advert_BaseDeDonnee_entry_widget -%}
             <div class="col-md-6">
-                <div class="block" style="min-height: 344px">
+                <div class="block" style="min-height: 417px">
                     <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
                         <h2 style="font-size: larger">mah</h2>
 
                     </div>
+                    <br>
                     {{ block('form_widget') }}
                 </div>
             </div>
@@ -250,11 +227,12 @@
 
         {%- block _advert_Sitesweb_entry_widget -%}
             <div class="col-md-6">
-                <div class="block" style="min-height: 344px">
+                <div class="block" style="min-height: 417px">
                     <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
                         <h2 style="font-size: larger">mah</h2>
 
                     </div>
+                    <br>
                     {{ block('form_widget') }}
                 </div>
             </div>
@@ -273,11 +251,12 @@
 
         {%- block _advert_Reseaux_entry_widget -%}
             <div class="col-md-6">
-                <div class="block" style="min-height: 344px">
+                <div class="block" style="min-height: 417px">
                     <div class="block-title" style="background-color: rgba(229,229,229,0.45)">
                         <h2 style="font-size: larger">mah</h2>
 
                     </div>
+                    <br>
                     {{ block('form_widget') }}
                 </div>
             </div>
@@ -305,11 +284,34 @@
     </div>
 </div>
 
+<div id="addemail">
+    {%- block _advert_Emails_entry_widget -%}
+        <div class="col-lg-4" style="padding-bottom: 60px">
+            {{ block('form_widget') }}
+        </div>
+    {%- endblock _advert_Emails_entry_widget -%}
+</div>
+<script>
+    $('#addemail').remove();
+</script>
+
+<div class="block">
+    <div class="block-title">
+        <h2>Emails</h2>
+        <div class="block-options pull-right">
+            <a class="btn btn-success" id="add_Emails"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter</a>
+        </div>
+    </div>
+    <div style="overflow: hidden;">
+    {{ form_widget(form.Emails) }}
+    {{ form_errors(form.Emails) }}
+    </div>
+</div>
 
 
 
 {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-  <div style="padding-bottom: 2%; width: 100px;margin: 0 auto">
+  <div style="padding-bottom: 2%; width: 100px;margin: 0 auto;">
   {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
   </div>
 

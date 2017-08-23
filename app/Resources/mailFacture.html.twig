@@ -28,7 +28,7 @@
 
     <h3 style="color: #176eaa"><strong>Bonjour,</strong></h3>
 
-<p style="font-size: 15px;color: #176eaa">Ceci est un rappel pour la facture de {{ month2 }} {{ per|date('Y') }} qui doit être payée avant {{ exp|date('d') }} {{ month1 }} {{ exp|date('Y') }}</p>
+<p style="font-size: 15px;color: #176eaa">Ceci est un rappel pour la facture de {{ month2 }} {{ per|date('Y') }}, plus précisément le paiement {% if (cat == 'Steg' or cat == 'Sonede' or cat == 'Telecom')  %}de{% elseif (cat == 'Gestion des ressources' or cat == 'Salaire du personnel')%}du{% else %}des{% endif %} {{ cat }} {% if note is not null %}({{ note }}){% endif %}, qui doit être payée avant le {{ exp|date('d') }} {{ month1 }} {{ exp|date('Y') }}</p>
 <p style="font-size: 15px;color: #176eaa">Cordialement,</p>
 <img src="{{ image_src }}">
 

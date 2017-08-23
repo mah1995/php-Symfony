@@ -51,10 +51,6 @@ class Facturation
     private $date;
 
 
-    /**
-     * @ORM\Column(name="DateFin", type="date", length=255)
-     */
-    private $DateFin;
 
 
     public function __construct()
@@ -113,20 +109,6 @@ class Facturation
         return $this->Periode;
     }
 
-    /**
-     * @param string $DateFin
-     */
-    public function setDateFin($DateFin)
-    {
-        $this->DateFin = $DateFin;
-    }
 
-    /**
-     * @return string
-     */
-    public function getDateFin()
-    {
-        return $this->DateFin;
-    }
 
 }

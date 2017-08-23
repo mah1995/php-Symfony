@@ -122,6 +122,9 @@ class FacturationController extends Controller
        'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
    ));
 
+       $footer = $this->renderView('OCPlatformBundle:Facturation:footer.html.twig',array(
+           'base_dir' => $this->get('kernel')->getRootDir() . '/../web' . $request->getBasePath()
+       ));
 
        return new Response(
            $this->get('knp_snappy.pdf')
@@ -129,7 +132,9 @@ class FacturationController extends Controller
                'encoding'=>'utf-8',
                'images' => true,
                'lowquality' => false,
-                   'header-html'=>$header
+                   'header-html'=>$header,
+                   'footer-html'=>$footer,
+                   'dpi'=>300,
                )),
            200,
            array(

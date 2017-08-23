@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 
@@ -47,11 +46,7 @@ class FacturationType extends AbstractType
             ),
 
         ))
-        ->add('DateFin',DateType::class,array(
-            'label_attr'=>array(
-                'class'=>'col-md-5 col-md-push-2 control-label',
-                'style'=>'text-align: left',          ),
-        ))
+
       ->add('save',      SubmitType::class ,array(
           'label'=>'Enregistrer'
       ))

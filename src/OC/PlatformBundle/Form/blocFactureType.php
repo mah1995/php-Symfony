@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 
 class blocFactureType extends AbstractType
 {
@@ -52,6 +54,13 @@ class blocFactureType extends AbstractType
                 'attr'=>array(
                     'class'=>'form-control'
                 ),
+            ))
+            ->add('DateFin',DateType::class,array(
+                'label_attr'=>array(
+                    'class'=>'col-md-8 control-label',
+                    'style'=>'text-align: left',
+                    ),
+                'label'=>'Dernière date avant paiement'
             ));
 
     }
